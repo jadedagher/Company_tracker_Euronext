@@ -1,0 +1,99 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/assets/js/tablework.js"></script>
+
+<div class="plafond_pdf_page">
+</div>
+
+
+<div class="container">
+	<h3>Euronext Users</h3>
+
+	<div class="container">
+              <div class="row">
+              
+              	<div class="btn pull-left">
+                      <div class="form-group">
+                          <input style="width: 200%;" type="text" id="search" placeholder="Type to search" class="form-control">
+                      </div>
+                  </div>
+               
+                  <div class="btn pull-right">
+                     <button  style="width:200px" onclick="alertme()" class="btn mtop navBtn" value="Download" />Download the tab for Excel</button>
+                  </div>
+                 
+                          
+              </div>   
+        </div>
+
+
+	<table class = "table">
+
+		<thead class="thead-inverse">
+			<tr>
+
+				<th></th>
+				<th></th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Pseudo</th>
+        		<th>Department</th>
+				<th>Email</th>
+				<!-- <th>Team</th> -->
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="table">
+
+			<%_.each(users, function(user){	%>
+
+			<tr data-id="<% user.id %>" data-model="user">
+				
+				
+				<% if (user.online) {%>
+					<td><img src="/images/admin/online.png"></td>
+				<% } else { %>
+					<td><img src="/images/admin/offline.png"></td>
+				<% } %>
+				<td></td>
+
+				<td><%= user.firstname %></td>
+				<td><%= user.lastname %></td>
+				<td><%= user.pseudo %></td>
+        		<td><%= user.departement %></td>
+				<td><%= user.email %></td>
+				<!-- <td><%= user.team %></td> -->
+
+
+				<% if(user.admin){ %>
+					<td><img src="/images/admin/admin.png"></td>
+				<% } else { %>
+					<td><img src="/images/admin/user.png"></td>
+				<% } %>
+
+				<td><a href="/user/profil/<%=user.id %>" style="background-color:#00948e; border-color: #00948e;"class="btn btn-sm btn-primary">Profil</a></td>
+				<td><a href="/user/edit/<%=user.id %>" class="btn btn-sm btn-warning">Edit</a></td>
+
+				<!-- Pour la fonction destroyed on utilise la methode POST  -->
+
+				<td>
+					<form action="/user/destroy/<%= user.id %>" method= "POST">
+						<input type="hidden" name="_method" value="delete"/>
+						<input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+					</form>
+				<td>
+
+			</tr>
+
+
+			<% }) %>
+			</tbody>
+	</table>
+	<hr>
+</div>
+
+
+
+</script>
+

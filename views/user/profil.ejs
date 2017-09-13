@@ -1,0 +1,65 @@
+<div class="plafond">
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6 col-md-offset-3">
+
+			<div class="ProfilInformation">
+				<h1>Your informations</h1>
+
+				<br></br>
+				<hr>
+        <br></br>
+
+
+
+
+
+				<h1 style="color: #00948e"><%= user.firstname %> <%= user.lastname  %></h1>
+				<br></br>
+				<h3>Pseudo: <span style="color: #00948e"><%= user.pseudo %><span></h3>
+				<h3>Department: <span style="color: #00948e"><%= user.departement %><span></h3>
+        	
+
+
+
+				<h3>Contact: <span style="color: #00948e"><%= user.email %><span></h3>
+
+				
+
+				<br></br>
+				<hr>
+
+				<br></br>
+
+				<% if(user.admin){ %>
+					<td><img src="/images/admin/admin.png"><strong>    Administrator</strong></td>
+				<% } %>
+
+				<h4>You can edit your informations at any time</h4>
+				<a class="btn btn-medium btn-primary" style="background-color:#00948e; border-color: #00948e;" href="/user/edit/<%= user.id %>">Edit your informations now!</a>
+
+			</div>
+		</div>
+	</div>
+
+
+
+<style>
+
+	hr {
+	  height: 2px;
+	  margin: -0.5em 0;
+	  background-color: black;
+
+	}
+
+	.ProfilInformation{
+		text-align: center;
+	}
+
+
+</style>
+

@@ -1,0 +1,81 @@
+<div class="plafond">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	
+<!-- REGISTRATION -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6 col-md-offset-3">
+				
+				<form class="myForm" action="/Companytarget/createCompany" method="POST"> 
+
+					<h1 class="text_title H1_Login_costud">Add a company</h1>
+
+					<br /><br />
+			
+						
+					<label class="form_col"></label>
+					<input class="input_form_signUp" name="cname" placeholder="Company name*" type="text" />
+					
+					<br /><br />
+
+					<label class="form_col"></label>
+					<input class="input_form_signUp" name="url" placeholder="Company url*" type="text" />
+					
+					<br /><br />
+					
+					
+					<label class="form_col"></label>
+					<textarea class="input_form_signUp" style="height: 150px;" name="how" placeholder="How this company can help us ?* this text will not appear in the public companies directory" type="text"></textarea>
+					<br /><br />
+
+					<label class="form_col"></label>
+					<input class="input_form_signUp" name="hashtag" placeholder="#Hashtag ?" type="text" />
+
+					<br /><br />
+
+					<span class="form_col"></span>
+					<input type="submit" class="button2_create_account" id="" value="Add a company" onclick="self.location.href='/user/companydirectory/<%= session.User.id %>'"></input>
+					<br /><br />
+
+					<label class="form_col"></label>
+						<span>* Field required</span>
+					<br /><br />
+
+				</form>
+			
+		</div>
+	</div><!-- row -->
+</div><!-- container -->
+
+<style>
+	
+	.alert{
+		background-color:#00948e ;
+	}
+	body{
+		background-color: #F0F0F0;
+	}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<div class="plafond">
+</div>
+
+<!-- // marche pas // marche pas // <!marche pas  --> 
+
+<!-- edit company -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6 col-md-offset-3">
+				
+				<form class="myForm" action="/Companytarget/companyupdate/<%= company.id %>" method="POST"> 
+				<form class="myForm" action="/Companytarget/companyupdate/<%= company.id %>" method="POST"> 
+
+					<h1 class="text_title H1_Login_costud">Edit the company information</h1>
+
+					<br /><br />
+						
+					<label class="form_col"></label>
+					<input value="<%= company.cname %>" name="cname" type="text" class="input_form_signUp">
+					
+					<br /><br />
+
+					<label class="form_col"></label>
+					<input value="<%= company.url %>" name="url" type="text" class="input_form_signUp">
+					
+					<br /><br />
+					
+					
+					<label class="form_col"></label>
+					<input value="<%= company.how %>" name="how" type="text" class="input_form_signUp">
+					<br /><br />
+						
+					
+					<label class="form_col"></label>
+					<input value="<%= company.hashtag %>" name="hashtag" type="text" class="input_form_signUp">
+					<br /><br />
+					
+
+					<span class="form_col"></span>
+					<input class="button2_create_account" id="addUser" type="submit" value="Proceed" /> <!-- <input type="reset" value="Reset the Form" /> -->
+					<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+					<br /><br />
+
+				</form>
+			
+		</div>
+	</div><!-- row -->
+</div><!-- container -->
+
+
+
+<style>
+	
+	body{
+		background-color: #F0F0F0;
+	}
+	
+</style>

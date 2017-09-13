@@ -1,0 +1,147 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/assets/js/tablework.js"></script>
+
+<div class="plafond_pdf_page">
+</div>
+
+
+<div class="container">
+	<h3><img style="height: 30px;width: 30px;" src="/images/directory.png">      Companies directory</h3>
+	<br>
+		
+		
+		<div class="container">
+              <div class="row">
+              
+              	<div class="btn pull-left">
+                      <div class="form-group">
+                          <input style="width: 200%;" type="text" id="search" placeholder="Type to search" class="form-control">
+                      </div>
+                  </div>
+                
+                <% if(req.session.User.admin == true){%>
+                  <div class="btn pull-right">
+                     <button  style="width:200px" onclick="alertme()" class="btn mtop navBtn" value="Download" />Download the tab for Excel</button>
+                  </div>
+                 <% } %>
+                          
+              </div>   
+        </div>
+        
+
+
+
+	<table class = "table table-responsive" style="overflow-y: hidden">
+	<br>
+		<thead class="thead-inverse">
+
+			<tr>
+
+				<th>#</th>
+
+				<th>Company name</th>
+				<th>Author ID</th>
+				<th>Author department</th>
+				<th>Hashtag(s)</th>
+
+				<% if(req.session.User.admin == true){ %>
+					<th>Comment</th>
+				<% } %>
+				<% if(req.session.User.admin == false){ %>
+					<th></th>
+				<% } %>
+				<th>Action</th>
+				<% if(req.session.User.admin == true){ %>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>favorite</th>
+				<% } %>	
+
+				
+
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="table">
+
+
+			<%_.each(companies, function(company){	%>
+
+			<tr data-id="<% company.id %>" data-model="company">
+				<td scope="row"></td>
+				<td><a href="<%= company.url %>" target="_blank"><%= company.cname %></a></td>
+				<td><%= company.authorIdfirstname %> <%= company.authorIdlastname %></td>
+				<td><%= company.authorDepartment %></td>
+				<td style="width: 200px;"><%= company.hashtag %></td>
+
+
+				<% if(req.session.User.admin == true){ %>
+				<td><%= company.how %></td>
+				
+				<!-- Pour la fonction destroyed on utilise la methode POST  -->
+
+				<td>
+					<form action="/Companytarget/destroy/<%= company.id %>" method= "POST">
+						<input type="hidden" name="_method" value="delete"/>
+						<input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+						<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+					</form>
+				</td>
+				<td>
+
+				<% } %>
+
+				<td>
+				<% if(req.session.User.admin == true && company.favorite == false){ %>
+				
+
+					<form action="/Companytarget/favorite/<%= company.id %>" method= "POST">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button  style="width:130px" type="submit" class="btn btn-info" value="MoveF" />Move to favorite</button>
+                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                              
+                    </form>
+
+                <% } %>
+
+                <% if(req.session.User.admin == true && company.favorite == true){%>
+
+                	<form action="/Companytarget/deletefromfavorite/<%= company.id %>" method= "POST">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button  style="width:130px" type="submit" class="btn btn-warning" value="deleteF" />X favorite</button>
+                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                              
+                    </form>
+                <% } %>
+
+                </td>
+
+
+                
+				<% if(req.session.User.lastname == company.authorIdlastname | req.session.User.admin == true){ %>
+	              <td>
+	              	
+	                  <a href="/user/companyedit/<%=company.id %>" class="btn btn-sm btn-warning">Edit</a></td>
+	              
+
+	              </td>
+	            <% } %>
+	            
+	            
+	            <% if(company.favorite == true && req.session.User.admin == true){ %>
+					<td><img style="height: 33px;width: 33px;" src="/images/favorite.png"></td>
+				<% } %>
+
+			</tr>
+
+			<% }) %>
+		<tbody>
+
+	</table>
+	<hr>
+</div>
+
+
+
+
