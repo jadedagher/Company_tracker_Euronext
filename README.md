@@ -1,3 +1,3 @@
 # Company_tracker_Euronext
 
-![alt tag](https://github.com/jadedagher/yahoo_YQL_finance/blob/master/screenshot1.png)
+![alt tag](Company_tracker_Euronext/.idea/1.png)
